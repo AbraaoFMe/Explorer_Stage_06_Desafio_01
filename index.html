@@ -12,6 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="./assets/Logo.svg" type="image/x-svg">
     <link rel="stylesheet" href="style.css">
+
+    <script src="./js/index.js" type="module" defer></script>
 </head>
 
 <body>
@@ -26,80 +28,7 @@
     </nav>
 
     <div id="app">
-
     </div>
-
-    <script>
-        const routes = {
-            "/": {
-                html: "./pages/home.html",
-                title:"Home",
-                style: "home"
-            },
-            "/universe": {
-                html: "./pages/universe.html",
-                title: "Universe",
-                style: "universe"
-            },
-            "/explore": {
-                html: "./pages/explore.html",
-                title: "Explore",
-                style: "explore"
-            },
-            404: {
-                html: "./pages/404.html",
-                title: "Not Found",
-                style: "not-found"
-            }
-        }
-
-        function route(event) {
-            event = event || window.event
-            event.preventDefault()
-
-            window.history.pushState({}, "", event.target.href)
-
-            handle()
-        }
-
-        function handle() {
-            const { pathname } = window.location
-            const route = routes[pathname] || routes[404]
-
-            fetch(route.html)
-                .then(data => data.text())
-                .then(html => {
-                    document.querySelector('#app').innerHTML = html
-                })
-
-            document.title = route.title
-            setBackground(route.style)
-            setNav()
-
-        }
-
-        function setBackground(route) {
-            document.body.classList = [route]
-        }
-
-        const navLinks = document.querySelectorAll("nav ul li a")
-
-        function setNav() {
-            navLinks.forEach(link => {
-                if (window.location != link.href) {
-                    link.classList.remove("selected")
-                } else {
-                    link.classList.add("selected")
-                }
-
-            })
-        }
-
-        handle()
-
-        window.onpopstate = () => handle()
-
-    </script>
 </body>
 
 </html>
