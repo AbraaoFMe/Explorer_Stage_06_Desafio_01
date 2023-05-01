@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universe</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="./assets/Logo.svg" type="image/x-svg">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav>
+        <img src="./assets/Logo.svg" alt="Logo" class="logo">
+
+        <ul>
+            <li><a href="/" onclick="route()">Home</a></li>
+            <li><a href="/universe" onclick="route()">O Universo</a></li>
+            <li><a href="/explore" onclick="route()">Exploração</a></li>
+        </ul>
+    </nav>
+
+    <div id="app">
+
+    </div>
+
+    <script>
+        const routes = {
+            "/": {
+                html: "./pages/home.html",
+                title:"Home",
+                style: "home"
+            },
+            "/universe": {
+                html: "./pages/universe.html",
+                title: "Universe",
+                style: "universe"
+            },
+            "/explore": {
+                html: "./pages/explore.html",
+                title: "Explore",
+                style: "explore"
+            },
+            404: {
+                html: "./pages/404.html",
+                title: "Not Found",
+                style: "not-found"
+            }
+        }
+
+        function route(event) {
+            event = event || window.event
+            event.preventDefault()
+
+            window.history.pushState({}, "", event.target.href)
+
+            handle()
+        }
+
+        function handle() {
+            const { pathname } = window.location
+            const route = routes[pathname] || routes[404]
+
+            fetch(route.html)
+                .then(data => data.text())
+                .then(html => {
+                    document.querySelector('#app').innerHTML = html
+                })
+
+            document.title = route.title
+            setBackground(route.style)
+            setNav()
+
+        }
+
+        function setBackground(route) {
+            document.body.classList = [route]
+        }
+
+        const navLinks = document.querySelectorAll("nav ul li a")
+
+        function setNav() {
+            navLinks.forEach(link => {
+                if (window.location != link.href) {
+                    link.classList.remove("selected")
+                } else {
+                    link.classList.add("selected")
+                }
+
+            })
+        }
+
+        handle()
+
+        window.onpopstate = () => handle()
+
+    </script>
+</body>
+
+</html>

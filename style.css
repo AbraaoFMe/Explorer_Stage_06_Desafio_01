@@ -1,0 +1,154 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    font-size: 62.5%;
+
+    --ff: 'Roboto', sans-serif;
+
+    --fc-link-primary: hsla(0, 0%, 100%, 1);
+    --fc-link-secondary: hsla(240, 7%, 78%, 1);
+
+    --fc-main-text: hsla(240, 9%, 89%, 1);
+
+    --fc-button-primary: hsla(0, 0%, 100%, 1);
+    --fc-button-hover: hsla(194, 97%, 31%, 1);
+}
+
+/* General */
+body,
+.button {
+    font-family: var(--ff);
+}
+
+a,
+.button {
+    cursor: pointer;
+}
+
+.button {
+    border: 2px solid var(--fc-button-primary);
+    border-radius: 5px;
+
+    color: var(--fc-button-primary);
+    background: transparent;
+
+    padding: 1.2rem 3.2rem;
+
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.4rem;
+    line-height: 2.4rem;
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 125%;
+}
+
+
+/* Index */
+body {
+    font-size: 1.8rem;
+    line-height: 160%;
+    color: var(--fc-main-text);
+
+    background-image: url('./assets/mountains-universe-1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: bottom;
+    min-height: 100vh;
+
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+
+body.universe {
+    background-image: url('./assets/mountains-universe02.png');
+}
+
+body.explore {
+    background-image: url('./assets/mountains-universe-3.png');
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 3.2rem;
+
+    padding: 4rem 7.2rem;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 3.2rem;
+
+    padding: 0 1rem;
+}
+
+nav ul a {
+    text-decoration: none;
+    color: var(--fc-link-secondary);
+
+    font-size: 2.16rem;
+    line-height: 2.2rem;
+
+    display: block;
+}
+
+nav ul a:hover {
+    transform: scale(1.2);
+}
+
+nav ul a.selected {
+    font-weight: bold;
+    color: var(--fc-button-primary);
+}
+
+.button:hover {
+    background: var(--fc-button-primary);
+    color: var(--fc-button-hover);
+}
+
+#app {
+    position: relative;
+}
+
+/* Home */
+.home .page-wrapper {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.home .page-wrapper .main-content-wrapper {
+    margin-top: -20rem;
+}
+
+.home .page-wrapper h1 {
+    margin-bottom: 2.4rem;
+}
+
+/* Default Section */
+.default-section {
+    margin-top: 6.4rem;
+    margin-left: 10.2rem;
+}
+
+.default-section p {
+    max-width: 64.8rem;
+    margin-top: 1.6rem;
+}
